@@ -25,9 +25,11 @@ if (args.Length > 0)
         //Using NewtoonSoft for dynamic desirialization
         var dynamicData = JsonConvert.DeserializeObject<dynamic>(responseString);
 
+
+        string guess = GuesCommand(dynamicData!.choises[0].text);
         Console.ForegroundColor = ConsoleColor.Green;
         //Not recomanded
-        Console.WriteLine($"---> API response is : {dynamicData!.choisesp[0].text}");
+        Console.WriteLine($"--->My guess to the command prompt is : {guess}");
         Console.ResetColor();
     }
     catch (Exception ex)
@@ -36,9 +38,29 @@ if (args.Length > 0)
         Console.WriteLine($"---> Couldnt deserialize the JSON : {ex.Message}");
     }
 
-    Console.WriteLine(responseString);
+    // Console.WriteLine(responseString);
 }
 else
 {
     Console.WriteLine("---> You need to provide some input");
+}
+
+//Isolate the Command Prompt
+
+static string GuesCommand(string raw)
+{
+    Console.WriteLine("---> GPT API Returned Text:");
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine(raw);
+
+    var lastIndex = raw.LastIndexOf("\n");
+
+    string guess = raw.Substring(lastIndex + 1);
+
+    Console.ResetColor();
+
+    //Copy to clipboard
+    TextCopy.ClipboardService.SetText(guess);
+
+    return guess;
 }
