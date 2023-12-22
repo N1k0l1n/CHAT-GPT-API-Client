@@ -19,6 +19,13 @@ The project showcases the integration of OpenAI's GPT API into a .NET 6 applicat
 - **.NET 6 SDK:** Ensure you have .NET 6 SDK installed on your system.
 - **OpenAI API Key:** Obtain an API key from OpenAI for accessing the GPT API.
 
+## Tech Stack
+
+- Dotnet 6
+- React Vite
+- Visual Studio 2022
+
+
 ### Installation
 
 1. Clone the repository: `git clone https://github.com/N1k0l1n/GPT-API-Client.git`
